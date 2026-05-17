@@ -9,38 +9,235 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as ShowsRouteImport } from './routes/shows'
+import { Route as RestaurantesRouteImport } from './routes/restaurantes'
+import { Route as PraiasRouteImport } from './routes/praias'
+import { Route as PontosTuristicosRouteImport } from './routes/pontos-turisticos'
+import { Route as MeusIngressosRouteImport } from './routes/meus-ingressos'
+import { Route as MapaRouteImport } from './routes/mapa'
+import { Route as LoginRouteImport } from './routes/login'
+import { Route as FavoritosRouteImport } from './routes/favoritos'
+import { Route as BaresRouteImport } from './routes/bares'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as CheckoutEventIdRouteImport } from './routes/checkout.$eventId'
 
+const ShowsRoute = ShowsRouteImport.update({
+  id: '/shows',
+  path: '/shows',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const RestaurantesRoute = RestaurantesRouteImport.update({
+  id: '/restaurantes',
+  path: '/restaurantes',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PraiasRoute = PraiasRouteImport.update({
+  id: '/praias',
+  path: '/praias',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PontosTuristicosRoute = PontosTuristicosRouteImport.update({
+  id: '/pontos-turisticos',
+  path: '/pontos-turisticos',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const MeusIngressosRoute = MeusIngressosRouteImport.update({
+  id: '/meus-ingressos',
+  path: '/meus-ingressos',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const MapaRoute = MapaRouteImport.update({
+  id: '/mapa',
+  path: '/mapa',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const LoginRoute = LoginRouteImport.update({
+  id: '/login',
+  path: '/login',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const FavoritosRoute = FavoritosRouteImport.update({
+  id: '/favoritos',
+  path: '/favoritos',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const BaresRoute = BaresRouteImport.update({
+  id: '/bares',
+  path: '/bares',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const CheckoutEventIdRoute = CheckoutEventIdRouteImport.update({
+  id: '/checkout/$eventId',
+  path: '/checkout/$eventId',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/bares': typeof BaresRoute
+  '/favoritos': typeof FavoritosRoute
+  '/login': typeof LoginRoute
+  '/mapa': typeof MapaRoute
+  '/meus-ingressos': typeof MeusIngressosRoute
+  '/pontos-turisticos': typeof PontosTuristicosRoute
+  '/praias': typeof PraiasRoute
+  '/restaurantes': typeof RestaurantesRoute
+  '/shows': typeof ShowsRoute
+  '/checkout/$eventId': typeof CheckoutEventIdRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/bares': typeof BaresRoute
+  '/favoritos': typeof FavoritosRoute
+  '/login': typeof LoginRoute
+  '/mapa': typeof MapaRoute
+  '/meus-ingressos': typeof MeusIngressosRoute
+  '/pontos-turisticos': typeof PontosTuristicosRoute
+  '/praias': typeof PraiasRoute
+  '/restaurantes': typeof RestaurantesRoute
+  '/shows': typeof ShowsRoute
+  '/checkout/$eventId': typeof CheckoutEventIdRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/bares': typeof BaresRoute
+  '/favoritos': typeof FavoritosRoute
+  '/login': typeof LoginRoute
+  '/mapa': typeof MapaRoute
+  '/meus-ingressos': typeof MeusIngressosRoute
+  '/pontos-turisticos': typeof PontosTuristicosRoute
+  '/praias': typeof PraiasRoute
+  '/restaurantes': typeof RestaurantesRoute
+  '/shows': typeof ShowsRoute
+  '/checkout/$eventId': typeof CheckoutEventIdRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths:
+    | '/'
+    | '/bares'
+    | '/favoritos'
+    | '/login'
+    | '/mapa'
+    | '/meus-ingressos'
+    | '/pontos-turisticos'
+    | '/praias'
+    | '/restaurantes'
+    | '/shows'
+    | '/checkout/$eventId'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to:
+    | '/'
+    | '/bares'
+    | '/favoritos'
+    | '/login'
+    | '/mapa'
+    | '/meus-ingressos'
+    | '/pontos-turisticos'
+    | '/praias'
+    | '/restaurantes'
+    | '/shows'
+    | '/checkout/$eventId'
+  id:
+    | '__root__'
+    | '/'
+    | '/bares'
+    | '/favoritos'
+    | '/login'
+    | '/mapa'
+    | '/meus-ingressos'
+    | '/pontos-turisticos'
+    | '/praias'
+    | '/restaurantes'
+    | '/shows'
+    | '/checkout/$eventId'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  BaresRoute: typeof BaresRoute
+  FavoritosRoute: typeof FavoritosRoute
+  LoginRoute: typeof LoginRoute
+  MapaRoute: typeof MapaRoute
+  MeusIngressosRoute: typeof MeusIngressosRoute
+  PontosTuristicosRoute: typeof PontosTuristicosRoute
+  PraiasRoute: typeof PraiasRoute
+  RestaurantesRoute: typeof RestaurantesRoute
+  ShowsRoute: typeof ShowsRoute
+  CheckoutEventIdRoute: typeof CheckoutEventIdRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/shows': {
+      id: '/shows'
+      path: '/shows'
+      fullPath: '/shows'
+      preLoaderRoute: typeof ShowsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/restaurantes': {
+      id: '/restaurantes'
+      path: '/restaurantes'
+      fullPath: '/restaurantes'
+      preLoaderRoute: typeof RestaurantesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/praias': {
+      id: '/praias'
+      path: '/praias'
+      fullPath: '/praias'
+      preLoaderRoute: typeof PraiasRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/pontos-turisticos': {
+      id: '/pontos-turisticos'
+      path: '/pontos-turisticos'
+      fullPath: '/pontos-turisticos'
+      preLoaderRoute: typeof PontosTuristicosRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/meus-ingressos': {
+      id: '/meus-ingressos'
+      path: '/meus-ingressos'
+      fullPath: '/meus-ingressos'
+      preLoaderRoute: typeof MeusIngressosRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/mapa': {
+      id: '/mapa'
+      path: '/mapa'
+      fullPath: '/mapa'
+      preLoaderRoute: typeof MapaRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/login': {
+      id: '/login'
+      path: '/login'
+      fullPath: '/login'
+      preLoaderRoute: typeof LoginRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/favoritos': {
+      id: '/favoritos'
+      path: '/favoritos'
+      fullPath: '/favoritos'
+      preLoaderRoute: typeof FavoritosRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/bares': {
+      id: '/bares'
+      path: '/bares'
+      fullPath: '/bares'
+      preLoaderRoute: typeof BaresRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/': {
       id: '/'
       path: '/'
@@ -48,22 +245,29 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/checkout/$eventId': {
+      id: '/checkout/$eventId'
+      path: '/checkout/$eventId'
+      fullPath: '/checkout/$eventId'
+      preLoaderRoute: typeof CheckoutEventIdRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  BaresRoute: BaresRoute,
+  FavoritosRoute: FavoritosRoute,
+  LoginRoute: LoginRoute,
+  MapaRoute: MapaRoute,
+  MeusIngressosRoute: MeusIngressosRoute,
+  PontosTuristicosRoute: PontosTuristicosRoute,
+  PraiasRoute: PraiasRoute,
+  RestaurantesRoute: RestaurantesRoute,
+  ShowsRoute: ShowsRoute,
+  CheckoutEventIdRoute: CheckoutEventIdRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
-
-import type { getRouter } from './router.tsx'
-import type { startInstance } from './start.ts'
-declare module '@tanstack/react-start' {
-  interface Register {
-    ssr: true
-    router: Awaited<ReturnType<typeof getRouter>>
-    config: Awaited<ReturnType<typeof startInstance.getOptions>>
-  }
-}
