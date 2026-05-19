@@ -1,6 +1,8 @@
 import { motion } from "framer-motion";
 import { Heart, Star, MapPin, Clock } from "lucide-react";
 import { useFavorites } from "@/lib/favorites";
+import { useState } from "react";
+import { MapModal } from "./MapModal";
 
 export type PlaceCardProps = {
   id: string;
@@ -11,11 +13,13 @@ export type PlaceCardProps = {
   address?: string;
   hours?: string;
   badge?: string;
+  coords?: { lat: number; lng: number };
   onClick?: () => void;
 };
 
 export function PlaceCard(p: PlaceCardProps) {
   const { has, toggle } = useFavorites();
+  const [isMapOpen, setIsMapOpen] = useState(false);
   const fav = has(p.id);
 
   return (
@@ -65,11 +69,36 @@ export function PlaceCard(p: PlaceCardProps) {
         {p.subtitle && <p className="mt-0.5 text-xs text-muted-foreground">{p.subtitle}</p>}
         {(p.address || p.hours) && (
           <div className="mt-3 flex items-center gap-3 text-xs text-muted-foreground">
-            {p.address && <span className="inline-flex items-center gap-1"><MapPin className="h-3 w-3" />{p.address}</span>}
-            {p.hours && <span className="inline-flex items-center gap-1"><Clock className="h-3 w-3" />{p.hours}</span>}
+            {p.address && (
+              <button 
+                onClick={(e) => {
+                  if (p.coords) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    setIsMapOpen(true);
+                  }
+                }}
+                className={`inline-flex items-center gap-1 text-left ${p.coords ? "hover:text-accent transition-colors" : ""}`}
+              >
+                <MapPin className="h-3 w-3 shrink-0" />
+                <span className={p.coords ? "underline decoration-accent/30 underline-offset-2" : ""}>
+                  {p.address}
+                </span>
+              </button>
+            )}
+            {p.hours && <span className="inline-flex items-center gap-1"><Clock className="h-3 w-3 shrink-0" />{p.hours}</span>}
           </div>
         )}
       </div>
+
+      {p.coords && (
+        <MapModal 
+          isOpen={isMapOpen} 
+          onClose={() => setIsMapOpen(false)} 
+          title={p.title} 
+          coords={p.coords} 
+        />
+      )}
     </motion.article>
   );
 }

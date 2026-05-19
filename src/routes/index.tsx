@@ -131,6 +131,7 @@ function Index() {
               address={a.price}
               hours={a.hours}
               rating={4.7}
+              coords={a.coords}
             />
           ))}
         </div>

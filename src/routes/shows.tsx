@@ -4,6 +4,8 @@ import { Layout } from "@/components/site/Layout";
 import { PageHeader } from "@/components/site/PageHeader";
 import { events } from "@/data";
 import { Calendar, MapPin, Ticket } from "lucide-react";
+import { useState } from "react";
+import { MapModal } from "@/components/site/MapModal";
 
 export const Route = createFileRoute("/shows")({
   component: ShowsPage,
@@ -16,6 +18,7 @@ export const Route = createFileRoute("/shows")({
 });
 
 function ShowsPage() {
+  const [mapState, setMapState] = useState<{isOpen: boolean; coords?: {lat: number; lng: number}; title?: string}>({isOpen: false});
   return (
     <Layout>
       <PageHeader
@@ -53,8 +56,18 @@ function ShowsPage() {
 
             <div className="p-5 flex items-center justify-between gap-3">
               <div className="flex flex-col gap-1 text-xs text-muted-foreground">
-                <span className="inline-flex items-center gap-1"><Calendar className="h-3 w-3" />{e.date} • {e.time}</span>
-                <span className="inline-flex items-center gap-1"><MapPin className="h-3 w-3" />{e.venue}</span>
+                <span className="inline-flex items-center gap-1"><Calendar className="h-3 w-3 shrink-0" />{e.date} • {e.time}</span>
+                <button 
+                  onClick={() => {
+                    if (e.coords) setMapState({isOpen: true, coords: e.coords, title: e.venue});
+                  }}
+                  className={`inline-flex items-center gap-1 text-left ${e.coords ? "hover:text-accent transition-colors" : ""}`}
+                >
+                  <MapPin className="h-3 w-3 shrink-0" />
+                  <span className={e.coords ? "underline decoration-accent/30 underline-offset-2" : ""}>
+                    {e.venue}
+                  </span>
+                </button>
               </div>
               <div className="text-right">
                 <div className="text-[10px] uppercase tracking-wider text-muted-foreground">A partir de</div>
@@ -74,6 +87,15 @@ function ShowsPage() {
           </motion.article>
         ))}
       </section>
+
+      {mapState.coords && (
+        <MapModal 
+          isOpen={mapState.isOpen} 
+          onClose={() => setMapState({...mapState, isOpen: false})} 
+          title={mapState.title || ""} 
+          coords={mapState.coords} 
+        />
+      )}
     </Layout>
   );
 }

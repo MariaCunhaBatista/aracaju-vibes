@@ -36,6 +36,7 @@ function BarsPage() {
             address={b.address}
             hours={b.hours}
             badge={b.liveMusic ? "🎵 Música ao vivo" : "Coquetelaria"}
+            coords={b.coords}
           />
         ))}
       </section>

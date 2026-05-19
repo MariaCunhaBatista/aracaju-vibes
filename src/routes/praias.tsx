@@ -4,9 +4,9 @@ import { motion, AnimatePresence } from "framer-motion";
 import { Layout } from "@/components/site/Layout";
 import { PageHeader } from "@/components/site/PageHeader";
 import { beaches } from "@/data";
-import { MapPin, Waves } from "lucide-react";
+import { MapPin, Waves, Heart } from "lucide-react";
 import { useFavorites } from "@/lib/favorites";
-import { Heart } from "lucide-react";
+import { MapModal } from "@/components/site/MapModal";
 
 export const Route = createFileRoute("/praias")({
   component: BeachesPage,
@@ -20,6 +20,7 @@ export const Route = createFileRoute("/praias")({
 
 function BeachesPage() {
   const [active, setActive] = useState(beaches[0].id);
+  const [isMapOpen, setIsMapOpen] = useState(false);
   const beach = beaches.find((b) => b.id === active)!;
   const { has, toggle } = useFavorites();
   const fav = has(beach.id);
@@ -89,7 +90,10 @@ function BeachesPage() {
                   <div className="text-sm font-semibold">Como chegar</div>
                   <div className="text-xs text-muted-foreground">Estacionamento gratuito ao longo da orla</div>
                 </div>
-                <button className="rounded-xl bg-gradient-accent px-4 py-2 text-xs font-semibold text-accent-foreground shadow-accent">
+                <button 
+                  onClick={() => setIsMapOpen(true)}
+                  className="rounded-xl bg-gradient-accent px-4 py-2 text-xs font-semibold text-accent-foreground shadow-accent transition-transform hover:scale-105 active:scale-95"
+                >
                   Abrir mapa
                 </button>
               </div>
@@ -97,6 +101,13 @@ function BeachesPage() {
           </motion.div>
         </AnimatePresence>
       </section>
+
+      <MapModal 
+        isOpen={isMapOpen} 
+        onClose={() => setIsMapOpen(false)} 
+        title={beach.name} 
+        coords={beach.coords} 
+      />
     </Layout>
   );
 }

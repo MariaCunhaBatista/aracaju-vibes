@@ -63,6 +63,7 @@ function RestaurantsPage() {
             address={r.address}
             hours={r.hours}
             badge={r.category}
+            coords={r.coords}
           />
         ))}
       </section>

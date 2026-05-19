@@ -6,6 +6,8 @@ import { attractions } from "@/data";
 import { Clock, Ticket, Navigation } from "lucide-react";
 import { useFavorites } from "@/lib/favorites";
 import { Heart } from "lucide-react";
+import { useState } from "react";
+import { MapModal } from "@/components/site/MapModal";
 
 export const Route = createFileRoute("/pontos-turisticos")({
   component: AttractionsPage,
@@ -19,6 +21,7 @@ export const Route = createFileRoute("/pontos-turisticos")({
 
 function AttractionsPage() {
   const { has, toggle } = useFavorites();
+  const [mapState, setMapState] = useState<{isOpen: boolean; coords?: {lat: number; lng: number}; title?: string}>({isOpen: false});
   return (
     <Layout>
       <PageHeader
@@ -63,7 +66,10 @@ function AttractionsPage() {
                   <span className="inline-flex items-center gap-1"><Ticket className="h-3 w-3" />{a.price}</span>
                 </div>
 
-                <button className="mt-5 self-start inline-flex items-center gap-2 rounded-xl bg-gradient-primary px-4 py-2 text-sm font-semibold text-primary-foreground shadow-soft hover:shadow-glow transition-shadow">
+                <button 
+                  onClick={() => setMapState({isOpen: true, coords: a.coords, title: a.name})}
+                  className="mt-5 self-start inline-flex items-center gap-2 rounded-xl bg-gradient-primary px-4 py-2 text-sm font-semibold text-primary-foreground shadow-soft hover:shadow-glow transition-shadow"
+                >
                   <Navigation className="h-4 w-4" /> Como chegar
                 </button>
               </div>
@@ -71,6 +77,15 @@ function AttractionsPage() {
           );
         })}
       </section>
+
+      {mapState.coords && (
+        <MapModal 
+          isOpen={mapState.isOpen} 
+          onClose={() => setMapState({...mapState, isOpen: false})} 
+          title={mapState.title || ""} 
+          coords={mapState.coords} 
+        />
+      )}
     </Layout>
   );
 }
