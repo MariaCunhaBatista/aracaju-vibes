@@ -9,56 +9,21 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
-import { Route as ShowsRouteImport } from './routes/shows'
-import { Route as RestaurantesRouteImport } from './routes/restaurantes'
-import { Route as PraiasRouteImport } from './routes/praias'
-import { Route as PontosTuristicosRouteImport } from './routes/pontos-turisticos'
-import { Route as MeusIngressosRouteImport } from './routes/meus-ingressos'
-import { Route as MapaRouteImport } from './routes/mapa'
-import { Route as LoginRouteImport } from './routes/login'
-import { Route as FavoritosRouteImport } from './routes/favoritos'
-import { Route as BaresRouteImport } from './routes/bares'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as BaresRouteImport } from './routes/bares'
+import { Route as FavoritosRouteImport } from './routes/favoritos'
+import { Route as LoginRouteImport } from './routes/login'
+import { Route as MapaRouteImport } from './routes/mapa'
+import { Route as MeusIngressosRouteImport } from './routes/meus-ingressos'
+import { Route as PontosTuristicosRouteImport } from './routes/pontos-turisticos'
+import { Route as PraiasRouteImport } from './routes/praias'
+import { Route as RestaurantesRouteImport } from './routes/restaurantes'
+import { Route as ShowsRouteImport } from './routes/shows'
 import { Route as CheckoutEventIdRouteImport } from './routes/checkout.$eventId'
 
-const ShowsRoute = ShowsRouteImport.update({
-  id: '/shows',
-  path: '/shows',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const RestaurantesRoute = RestaurantesRouteImport.update({
-  id: '/restaurantes',
-  path: '/restaurantes',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const PraiasRoute = PraiasRouteImport.update({
-  id: '/praias',
-  path: '/praias',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const PontosTuristicosRoute = PontosTuristicosRouteImport.update({
-  id: '/pontos-turisticos',
-  path: '/pontos-turisticos',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const MeusIngressosRoute = MeusIngressosRouteImport.update({
-  id: '/meus-ingressos',
-  path: '/meus-ingressos',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const MapaRoute = MapaRouteImport.update({
-  id: '/mapa',
-  path: '/mapa',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const LoginRoute = LoginRouteImport.update({
-  id: '/login',
-  path: '/login',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const FavoritosRoute = FavoritosRouteImport.update({
-  id: '/favoritos',
-  path: '/favoritos',
+const IndexRoute = IndexRouteImport.update({
+  id: '/',
+  path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
 const BaresRoute = BaresRouteImport.update({
@@ -66,9 +31,44 @@ const BaresRoute = BaresRouteImport.update({
   path: '/bares',
   getParentRoute: () => rootRouteImport,
 } as any)
-const IndexRoute = IndexRouteImport.update({
-  id: '/',
-  path: '/',
+const FavoritosRoute = FavoritosRouteImport.update({
+  id: '/favoritos',
+  path: '/favoritos',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const LoginRoute = LoginRouteImport.update({
+  id: '/login',
+  path: '/login',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const MapaRoute = MapaRouteImport.update({
+  id: '/mapa',
+  path: '/mapa',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const MeusIngressosRoute = MeusIngressosRouteImport.update({
+  id: '/meus-ingressos',
+  path: '/meus-ingressos',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PontosTuristicosRoute = PontosTuristicosRouteImport.update({
+  id: '/pontos-turisticos',
+  path: '/pontos-turisticos',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PraiasRoute = PraiasRouteImport.update({
+  id: '/praias',
+  path: '/praias',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const RestaurantesRoute = RestaurantesRouteImport.update({
+  id: '/restaurantes',
+  path: '/restaurantes',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ShowsRoute = ShowsRouteImport.update({
+  id: '/shows',
+  path: '/shows',
   getParentRoute: () => rootRouteImport,
 } as any)
 const CheckoutEventIdRoute = CheckoutEventIdRouteImport.update({
@@ -175,60 +175,11 @@ export interface RootRouteChildren {
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
-    '/shows': {
-      id: '/shows'
-      path: '/shows'
-      fullPath: '/shows'
-      preLoaderRoute: typeof ShowsRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/restaurantes': {
-      id: '/restaurantes'
-      path: '/restaurantes'
-      fullPath: '/restaurantes'
-      preLoaderRoute: typeof RestaurantesRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/praias': {
-      id: '/praias'
-      path: '/praias'
-      fullPath: '/praias'
-      preLoaderRoute: typeof PraiasRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/pontos-turisticos': {
-      id: '/pontos-turisticos'
-      path: '/pontos-turisticos'
-      fullPath: '/pontos-turisticos'
-      preLoaderRoute: typeof PontosTuristicosRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/meus-ingressos': {
-      id: '/meus-ingressos'
-      path: '/meus-ingressos'
-      fullPath: '/meus-ingressos'
-      preLoaderRoute: typeof MeusIngressosRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/mapa': {
-      id: '/mapa'
-      path: '/mapa'
-      fullPath: '/mapa'
-      preLoaderRoute: typeof MapaRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/login': {
-      id: '/login'
-      path: '/login'
-      fullPath: '/login'
-      preLoaderRoute: typeof LoginRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/favoritos': {
-      id: '/favoritos'
-      path: '/favoritos'
-      fullPath: '/favoritos'
-      preLoaderRoute: typeof FavoritosRouteImport
+    '/': {
+      id: '/'
+      path: '/'
+      fullPath: '/'
+      preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/bares': {
@@ -238,11 +189,60 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof BaresRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/': {
-      id: '/'
-      path: '/'
-      fullPath: '/'
-      preLoaderRoute: typeof IndexRouteImport
+    '/favoritos': {
+      id: '/favoritos'
+      path: '/favoritos'
+      fullPath: '/favoritos'
+      preLoaderRoute: typeof FavoritosRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/login': {
+      id: '/login'
+      path: '/login'
+      fullPath: '/login'
+      preLoaderRoute: typeof LoginRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/mapa': {
+      id: '/mapa'
+      path: '/mapa'
+      fullPath: '/mapa'
+      preLoaderRoute: typeof MapaRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/meus-ingressos': {
+      id: '/meus-ingressos'
+      path: '/meus-ingressos'
+      fullPath: '/meus-ingressos'
+      preLoaderRoute: typeof MeusIngressosRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/pontos-turisticos': {
+      id: '/pontos-turisticos'
+      path: '/pontos-turisticos'
+      fullPath: '/pontos-turisticos'
+      preLoaderRoute: typeof PontosTuristicosRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/praias': {
+      id: '/praias'
+      path: '/praias'
+      fullPath: '/praias'
+      preLoaderRoute: typeof PraiasRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/restaurantes': {
+      id: '/restaurantes'
+      path: '/restaurantes'
+      fullPath: '/restaurantes'
+      preLoaderRoute: typeof RestaurantesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/shows': {
+      id: '/shows'
+      path: '/shows'
+      fullPath: '/shows'
+      preLoaderRoute: typeof ShowsRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/checkout/$eventId': {
